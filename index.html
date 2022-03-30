@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eieruhr</title>
+    <link rel="manifest" href="manifest.json">
+
+
+<style>
+
+.background {
+
+    background-color: gray;
+}
+
+.center {
+
+    display: flex;
+    justify-content: center;
+}
+
+.margin-top {
+
+    margin-top: 100px;
+}
+
+.timer {
+
+    front-size: 600px;
+    color: white; 
+    font-family: "Roboto", sans-serif;
+}
+
+ 
+
+</style>
+
+<script>
+
+let alarm = new Audio("alarm.mp3");
+let timerStarted = false;
+
+function startTimer() {
+let startTime  = new Date().getTime();
+let fiveMinutes = 1000 * 60 * 5 ;
+let endTime = startTime + fiveMinutes;
+
+
+setInterval(function(){
+    let timeleft = endTime - new Date().getTime();
+
+if(timeleft > 0){
+
+let minutes = timeleft / (1000 * 60 );
+minutes = Math.floor(minutes);
+let seconds = (timeleft / 1000) % 60;
+seconds = Math.round(seconds);
+seconds =  ("0" + seconds).slice(-2);
+let text = "0" + minutes + ":" + seconds;
+timer.innerHTML = text;
+
+} else {
+
+    alarm.play();
+    timer.innerHTML   =  "FERTIG";
+    
+
+}
+
+}, 1000);
+}
+
+
+</script>
+
+
+
+</head>
+<body class="background">
+    <div><img src="bilder/menu.png"></div>
+    <div class="center margin-top"><img src="bilder/egg.png"></div>
+    <div class="center margin-top timer " id="timer" > 05 : 00</div>
+    <div class="center margin-top" ><img onclick="startTimer()" src="bilder/button.png"></div>
+
+</body>
+</html>
